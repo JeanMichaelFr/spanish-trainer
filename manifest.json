@@ -1,0 +1,13 @@
+{
+  "name": "English Trainer",
+  "short_name": "Trainer",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "icons": [
+    { "src": "/icons/icon-192.png.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}

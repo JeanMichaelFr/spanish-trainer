@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #e5e7eb;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 18px;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.primary {
+  width: 100%;
+  font-size: 26px;
+  padding: 24px;
+  background: #2563eb;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.controls button {
+  flex: 1;
+}
+
+#verbDisplay {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #020617;
+  font-size: 22px;
+}
+
+#line1 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
