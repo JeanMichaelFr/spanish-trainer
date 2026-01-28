@@ -37,10 +37,11 @@ fetch("verbs.json")
 
 
 function improveForLearning(text) {
-  // add short pauses after spaces and commas
   return text
     .replace(/,/g, ", ")
-    .replace(/\s+/g, "  "); // double space = clearer articulation
+    .replace(/\s+/g, " ")
+    .split(" ")
+    .join("   "); // consistent pause between words
 }
 
 function speak(text, lang) {
