@@ -23,19 +23,51 @@ const testBtn = document.getElementById("testBtn");
 const line1 = document.getElementById("line1");
 const line2 = document.getElementById("line2");
 
+const SPEECH_SETTINGS = {
+  "pl-PL": { rate: 0.85, pitch: 1.0 },
+  "es-ES": { rate: 0.8, pitch: 1.0 }
+};
+
+const WORD_GAP = 120; // tiny gap between words (ms)
+
+
 fetch("verbs.json")
   .then(r => r.json())
   .then(data => verbs = data);
 
+
+function improveForLearning(text) {
+  // add short pauses after spaces and commas
+  return text
+    .replace(/,/g, ", ")
+    .replace(/\s+/g, "  "); // double space = clearer articulation
+}
+
 function speak(text, lang) {
   return new Promise(resolve => {
-    const u = new SpeechSynthesisUtterance(text);
+    const u = new SpeechSynthesisUtterance(
+      improveForLearning(text)
+    );
+
     u.lang = lang;
+
+    // learner-friendly settings
+    u.rate = SPEECH_SETTINGS[lang]?.rate || 0.9;
+    u.pitch = SPEECH_SETTINGS[lang]?.pitch || 1.0;
+    u.volume = 1;
+
+    // try to pick a native voice if available
+    const voices = speechSynthesis.getVoices();
+    const nativeVoice = voices.find(v => v.lang === lang);
+    if (nativeVoice) u.voice = nativeVoice;
+
     u.onend = () => setTimeout(resolve, LONG_BREAK);
+
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
   });
 }
+
 
 function updateBottomStrip() {
   if (!started) return;
